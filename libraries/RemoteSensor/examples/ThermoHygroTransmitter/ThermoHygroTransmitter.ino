@@ -8,8 +8,8 @@
  
  #include <SensorTransmitter.h>
  
- // Initializes a ThermoHygroTransmitter on pin 11, with "random" ID 0, on channel 1.
- ThermoHygroTransmitter transmitter(11, 0, 1);
+ // Initializes a ThermoHygroTransmitter on pin 11, with "random" ID 0.
+ ThermoHygroTransmitter transmitter(11, 0);
  
  void setup() {
  }
@@ -20,7 +20,8 @@
    for (int i = -10; i<=20; i+=2) {
      // Temperatures are passed at 10 times the real value,
      // to avoid using floating point math.
-     transmitter.sendTempHumi(i * 10, i + 20);
+     // last value set channel 1 (2,3)
+     transmitter.sendTempHumi(i * 10, i + 20, 1);
      
      // Wait two seconds before sending next.
      delay(2000);
