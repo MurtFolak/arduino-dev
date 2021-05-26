@@ -93,7 +93,7 @@ class ThermoHygroTransmitter : public SensorTransmitter {
 		 * @channel The channel of this sensor, range [1..5]
 		 * @see SensorTransmitter::SensorTransmitter (constructor)
 		 */
-		ThermoHygroTransmitter(byte transmitterPin, byte randomId, byte channel);
+		ThermoHygroTransmitter(byte transmitterPin, byte randomId);
 		
 		/**
 		 * Sends temperature and humidity.
@@ -101,7 +101,7 @@ class ThermoHygroTransmitter : public SensorTransmitter {
 		 * @param temperature 10x the actual temperature. You want to send 23,5 degrees, then temperature should be 235.
 		 * @param humidty Humidity in percentage-points REL. Thus, for 34% REH humidity should be 34.
 		 */
-		void sendTempHumi(int temperature, byte humidity);
+		void sendTempHumi(int temperature, byte humidity, byte channel);
 	
 	private:
 		byte _channel; // Note: internally, the channels for the thermo/hygro-sensor are mapped as follow:
