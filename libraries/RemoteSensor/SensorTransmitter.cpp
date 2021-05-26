@@ -132,17 +132,15 @@ void SensorTransmitter::sendPackage(byte transmitterPin, byte *data) {
  * Thermo / Hygro sensor transmitter
  ***********************************/
  
-ThermoHygroTransmitter::ThermoHygroTransmitter(byte transmitterPin,  byte randomId, byte channel)  : SensorTransmitter(transmitterPin, randomId) {
-	_channel = channel;	
-}
+ThermoHygroTransmitter::ThermoHygroTransmitter(byte transmitterPin,  byte randomId)  : SensorTransmitter(transmitterPin, randomId)
 
-void ThermoHygroTransmitter::sendTempHumi(int temperature, byte humidity) {
+void ThermoHygroTransmitter::sendTempHumi(int temperature, byte humidity, byte channel) {
 	byte buffer[10];
 	
 	// Note: temperature is 10x the actual temperature! So, 23.5 degrees is passed as 235.
 	
 	buffer[0] = 0x75; 		/* Header byte */
-	buffer[1] = (_channel << 5) | _randomId ;  /* Thermo-hygro at channel 1 (see table1)*/
+	buffer[1] = (channel << 5) | _randomId ;  /* Thermo-hygro at channel 1 (see table1)*/
 	buffer[2] = 0xce;		/* Package size byte for th-sensor */
 	
 	if ( temperature < 0 ) {
