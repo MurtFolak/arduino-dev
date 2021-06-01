@@ -132,7 +132,6 @@ void SensorTransmitter::sendPackage(byte transmitterPin, byte *data) {
  * Thermo / Hygro sensor transmitter
  ***********************************/
  
-ThermoHygroTransmitter::ThermoHygroTransmitter(byte transmitterPin,  byte randomId)  : SensorTransmitter(transmitterPin, randomId) {channel;}
 
 void ThermoHygroTransmitter::sendTempHumi(int temperature, byte humidity, byte channel) {
 	byte buffer[10];
